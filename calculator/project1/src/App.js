@@ -10,11 +10,18 @@ const ACTIONS = {
   EVALUATE:'evaluate'
 }
 function reducer(state, {type, payload}){
-
+switch(type){
+ case ACTIONS.ADD_DIGIT:
+  return{
+    ...state,
+    currentOperand: `${currentOperand ||""}${payload.digit}`
+  }
+}
 }
 
 function App() {
   const[{currentOperand, previousOperand, operation}, dispatch]= useReducer(reducer,{})
+  dispatch({type:ACTIONS.ADD_DIGIT})
   return (
     <div className="calculator-grid">
       <div className='output'>
